@@ -12,12 +12,16 @@ export default class Card extends React.Component<Props> {
       <div className={style.card}>
         <img className={style.img} src={this.props.img} />
         <div>
-          <div>
-            <p>{this.props.title}</p>
-            <span>Created by {this.props.author}</span>
-            <span>{this.props.createdAt}</span>
+          <p className={style.title}>{this.props.title}</p>
+          <div className={style.description}>
+            <p>
+              Created by
+              <br />
+              <span>{this.props.author}</span>
+            </p>
+            <p>{new Date(this.props.createdAt).toDateString()}</p>
           </div>
-          <div>
+          <div className={style.info}>
             <span>
               <IoEye /> {this.props.views}
             </span>
