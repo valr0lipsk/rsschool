@@ -1,4 +1,3 @@
-@import-normalize;
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
 
 * {
@@ -10,12 +9,13 @@
   --color-00: #fff;
   --color-01: #c2e1c2;
   --color-02: #8d80ad;
-  --shadow: rgba(54, 52, 52, 0.7) 0px 8px;
+  --color-03: #111517;
+  --shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
   --font-family: 'Nunito Sans', sans-serif;
 
   --fs-sm: 0.8em;
   --fs-md: 1em;
-  --fs-xl: 1.5em;
+  --fs-xl: 1.35em;
 
   --fw-light: 400;
   --fw-medium: 600;
@@ -24,4 +24,5 @@
 
 body {
   background-color: var(--color-00);
+  font-family: var(--font-family);
 }
