@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import style from './Search.module.scss';
 
 interface State {
-  search: string;
+  search: string | null;
 }
 
-export default class Search extends Component {
+export default class Search extends React.Component {
   state: State = {
-    search: '',
+    search: !localStorage.getItem('search') ? '' : localStorage.getItem('search'),
   };
 
   componentDidMount() {
@@ -16,7 +16,7 @@ export default class Search extends Component {
   }
 
   componentWillUnmount() {
-    localStorage.setItem('search', this.state.search);
+    if (this.state.search) localStorage.setItem('search', this.state.search);
   }
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,7 @@ export default class Search extends Component {
           type="search"
           id="search"
           placeholder="Search something"
-          value={this.state.search}
+          value={this.state.search ? this.state.search : ''}
           onChange={this.handleChange}
         />
       </div>
