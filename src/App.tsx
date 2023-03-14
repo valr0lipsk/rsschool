@@ -1,9 +1,6 @@
-import Main from './pages/Main';
 import React from 'react';
-import './App.scss';
 import { Routes, Route } from 'react-router';
-import NotFound from './pages/NotFound';
-import About from './pages/About';
+import { NotFound, About, Main } from './pages';
 import Header from './components/header/Header';
 
 function App() {

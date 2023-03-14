@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em 0;
+  box-shadow: var(--shadow);
+  color: var(--color-03);
+  margin-bottom: 1em;
+}
+
+.title {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-medium);
+}
+
+.nav {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+
+.item {
+  text-decoration: none;
+  margin-right: 1em;
+  color: var(--color-03);
+}
+
+.active {
+  border-bottom: 2px solid var(--color-02);
+}
