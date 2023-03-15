@@ -1,11 +1,14 @@
 .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 1em 0;
   box-shadow: var(--shadow);
   color: var(--color-03);
   margin-bottom: 1em;
+}
+
+.navigate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .title {

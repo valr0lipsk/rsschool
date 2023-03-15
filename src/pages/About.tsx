@@ -1,4 +1,4 @@
-import Wrapper from '../components/wrapper/Wrapper';
+import { Wrapper } from '../components';
 import React from 'react';
 
 export default class About extends React.Component {

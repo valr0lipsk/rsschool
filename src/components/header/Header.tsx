@@ -2,13 +2,15 @@ import Wrapper from '../wrapper/Wrapper';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Header.module.scss';
+import { withRouter, withRouter2 } from 'hoc/withRouter';
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   render() {
     return (
-      <header>
-        <nav className={style.header}>
-          <Wrapper>
+      <header className={style.header}>
+        <Wrapper>
+          <nav className={style.navigate}>
+            <p className={style.title}>Header</p>
             <ul className={style.nav}>
               <li>
                 <NavLink
@@ -31,9 +33,12 @@ export default class Header extends React.Component {
                 </NavLink>
               </li>
             </ul>
-          </Wrapper>
-        </nav>
+          </nav>
+        </Wrapper>
       </header>
     );
   }
 }
+
+export const HeaderWithRouter = withRouter2(Header);
+// export default withRouter(Header);
