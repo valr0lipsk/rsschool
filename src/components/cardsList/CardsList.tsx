@@ -2,7 +2,6 @@ import React from 'react';
 import style from './CardsList.module.scss';
 import data from '../../assets/data.json';
 import Card from '../card/Card';
-import { nanoid } from 'nanoid';
 
 interface Item {
   title: string;
@@ -28,9 +27,9 @@ export default class CardsList extends React.Component {
 
   render() {
     return (
-      <div className={style.container}>
+      <div className={style.container} data-testid="cardsList">
         {this.state.items.map((item) => (
-          <Card {...item} key={nanoid()} />
+          <Card {...item} key={item.img + item.createdAt} />
         ))}
       </div>
     );
