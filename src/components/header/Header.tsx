@@ -15,7 +15,7 @@ export class Header extends React.Component<Props> {
         <Wrapper>
           <nav className={style.navigate}>
             <p className={style.title}>
-              Welcome on &nbsp;
+              Welcome on&nbsp;
               {mapPathnameToTitle(this.props.location.pathname)}
               &nbsp;page
             </p>
