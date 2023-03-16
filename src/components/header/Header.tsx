@@ -2,15 +2,23 @@ import Wrapper from '../wrapper/Wrapper';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Header.module.scss';
-import { withRouter, withRouter2 } from 'hoc/withRouter';
+import { withLocation } from '../../hoc/withRouter';
 
-class Header extends React.Component {
+interface Props {
+  location: typeof location;
+}
+
+export class Header extends React.Component<Props> {
   render() {
     return (
       <header className={style.header}>
         <Wrapper>
           <nav className={style.navigate}>
-            <p className={style.title}>Header</p>
+            <p className={style.title}>
+              Welcome on &nbsp;
+              {mapPathnameToTitle(this.props.location.pathname)}
+              &nbsp;page
+            </p>
             <ul className={style.nav}>
               <li>
                 <NavLink
@@ -40,5 +48,10 @@ class Header extends React.Component {
   }
 }
 
-export const HeaderWithRouter = withRouter2(Header);
-// export default withRouter(Header);
+export default withLocation(Header);
+
+function mapPathnameToTitle(pathname: string) {
+  if (pathname === '/') return 'main';
+
+  return pathname.substring(1);
+}
