@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "title": "Cute cat in hoodie",
     "author": "catslover45",
     "views": "300",
@@ -8,6 +9,7 @@
     "img": "https://i.pinimg.com/564x/5e/21/b5/5e21b5fa45cc04f8fd35537496ebe6d0.jpg"
   },
   {
+    "id": "2",
     "title": "A little bit confused cat",
     "author": "punksAreAlive",
     "views": "30",
@@ -16,6 +18,7 @@
     "img": "https://i.pinimg.com/564x/e3/34/61/e33461bbf48f290b67ce02366c72628c.jpg"
   },
   {
+    "id": "3",
     "title": "Christmas mood",
     "author": "frontendDeveloper666",
     "views": "167",
@@ -24,6 +27,7 @@
     "img": "https://i.pinimg.com/564x/5b/c3/c6/5bc3c6bf82e8da4b59a3000a94b56825.jpg"
   },
   {
+    "id": "4",
     "title": "Shine bright like a diamond",
     "author": "villy",
     "views": "605",
@@ -32,6 +36,7 @@
     "img": "https://i.pinimg.com/564x/9d/8a/67/9d8a677dd9d964689969a30a1aa534d1.jpg"
   },
   {
+    "id": "5",
     "title": "Pixel perfect",
     "author": "justACat",
     "views": "66",
@@ -40,6 +45,7 @@
     "img": "https://i.pinimg.com/564x/0e/f0/48/0ef0480b526f6b039df760de45248839.jpg"
   },
   {
+    "id": "6",
     "title": "Happy happy kitty",
     "author": "model33model",
     "views": "201",
@@ -48,6 +54,7 @@
     "img": "https://i.pinimg.com/564x/65/c0/ec/65c0ec56adaeb6ec9a9100d894798bc7.jpg"
   },
   {
+    "id": "7",
     "title": "After hard working day",
     "author": "frontendDeveloper666",
     "views": "111",
@@ -56,6 +63,7 @@
     "img": "https://i.pinimg.com/564x/55/9f/8a/559f8ad3af58eb70c1609fad35aede14.jpg"
   },
   {
+    "id": "8",
     "title": "Hungry sad little boii",
     "author": "justACat",
     "views": "57",
@@ -64,6 +72,7 @@
     "img": "https://i.pinimg.com/736x/1b/47/a4/1b47a40a95f424bf2787f68ba6742857.jpg"
   },
   {
+    "id": "9",
     "title": "Happy birthday to me!",
     "author": "busyBoy",
     "views": "5",

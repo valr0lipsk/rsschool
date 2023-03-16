@@ -4,6 +4,7 @@ import data from '../../assets/data.json';
 import Card from '../card/Card';
 
 interface Item {
+  id: string;
   title: string;
   author: string;
   views: string;
@@ -29,7 +30,7 @@ export default class CardsList extends React.Component {
     return (
       <div className={style.container} data-testid="cardsList">
         {this.state.items.map((item) => (
-          <Card {...item} key={item.img + item.createdAt} />
+          <Card {...item} key={item.id} />
         ))}
       </div>
     );

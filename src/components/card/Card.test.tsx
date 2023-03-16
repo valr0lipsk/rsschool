@@ -6,6 +6,7 @@ import '@testing-library/jest-dom';
 describe('Card component tests', () => {
   it('should render card component', () => {
     const data = {
+      id: '1',
       title: 'A little bit confused cat',
       author: 'punksAreAlive',
       views: '30',
