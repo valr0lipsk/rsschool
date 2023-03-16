@@ -2,7 +2,7 @@ import Wrapper from '../wrapper/Wrapper';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Header.module.scss';
-import { withLocation } from '../../hoc/withRouter';
+import { withLocation } from '../../hoc/withLocation';
 
 interface Props {
   location: typeof location;
