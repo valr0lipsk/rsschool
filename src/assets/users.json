@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "frontendDeveloper666",
+    "dateOfBirth": "2003-03-20T17:51:53.221Z",
+    "country": "Canada",
+    "sex": "other",
+    "promo": true
+  },
+  {
+    "id": "2",
+    "name": "catslover45",
+    "dateOfBirth": "1994-03-20T17:51:53.221Z",
+    "country": "Poland",
+    "sex": "female",
+    "promo": false
+  },
+  {
+    "id": "3",
+    "name": "punksAreAlive",
+    "dateOfBirth": "1964-01-20T17:51:53.221Z",
+    "country": "Australia",
+    "sex": "male",
+    "promo": true
+  }
+]

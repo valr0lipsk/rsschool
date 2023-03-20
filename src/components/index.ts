@@ -5,3 +5,4 @@ export { default as Wrapper } from './wrapper/Wrapper';
 export { default as Search } from './search/Search';
 export { default as InputWrapper } from './inputWrapper/InputWrapper';
 export { default as Form } from './form/Form';
+export { default as UsersList } from './usersList/UsersList';
