@@ -1,4 +1,4 @@
-import { About, Main, NotFound } from './pages';
+import { About, Main, NotFound, FormPage } from './pages';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -18,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About />,
+      },
+      {
+        path: '/form',
+        element: <FormPage />,
       },
     ],
   },

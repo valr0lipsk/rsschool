@@ -40,6 +40,16 @@ export class Header extends React.Component<Props> {
                   About
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? `${style.item} ${style.active}` : style.item
+                  }
+                  to={'/form'}
+                >
+                  Form
+                </NavLink>
+              </li>
             </ul>
           </nav>
         </Wrapper>
