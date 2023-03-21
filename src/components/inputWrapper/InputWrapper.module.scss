@@ -10,13 +10,13 @@
     text-decoration: underline;
   }
 
-  input:not([type="radio"], [type="checkbox"]), 
+  input:not([type='radio'], [type='checkbox']),
   select {
     margin-top: 0.5em;
   }
 
-  input[type='text'], 
-  input[type='datetime-local'], 
+  input[type='text'],
+  input[type='datetime-local'],
   select {
     max-width: 300px;
     width: 100%;
@@ -26,7 +26,6 @@
     padding: 0.65em 0.5em;
     font-family: var(--font-family);
     font-size: var(--fs-sm);
-
 
     &:focus {
       box-shadow: var(--color-02-1) 0 0 3px;
@@ -39,8 +38,8 @@
 }
 
 input[type='file'],
-
-.checkbox, .radio {
+.checkbox,
+.radio {
   flex-direction: row-reverse;
   justify-content: flex-end;
   align-items: center;
@@ -48,8 +47,15 @@ input[type='file'],
   input {
     margin-right: 0.5em;
   }
-  
+
   label {
     text-decoration: none;
   }
+}
+
+.error {
+  color: #ff0000;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  margin-top: 0.3em;
 }

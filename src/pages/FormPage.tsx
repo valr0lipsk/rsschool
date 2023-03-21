@@ -1,16 +1,21 @@
 import React from 'react';
 import { Form, Wrapper } from '../components';
-import { Item } from '../types';
+import { User } from '../types';
 import data from '../assets/users.json';
 import { UsersList } from '../components';
 
 interface State {
-  items: Item[];
+  items: User[];
 }
 
 export default class FormPage extends React.Component {
   state: State = {
     items: [],
+  };
+
+  addNewUser = (user: User) => {
+    this.setState((prev: State) => ({ items: [...prev.items, user] }));
+    console.log(user, this.state);
   };
 
   componentDidMount() {
@@ -20,8 +25,8 @@ export default class FormPage extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Form />
-        <UsersList users={data} />
+        <Form handleSubmit={this.addNewUser} />
+        <UsersList users={this.state.items} />
       </Wrapper>
     );
   }
