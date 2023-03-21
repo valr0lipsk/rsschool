@@ -1,0 +1,26 @@
+.notification {
+  position: fixed;
+  padding: 8px;
+  min-height: 60px;
+  min-width: 150px;
+  max-width: 200px;
+  bottom: 10px;
+  right: 10px;
+  z-index: 99; 
+  color: var(--color-03);
+  border: 2px solid;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success {
+  background-color: #a3eea3;
+  border-color: #598d59;
+}
+
+.error {
+  background-color: #e49c9c;
+  border-color: #a85d5d;
+}
