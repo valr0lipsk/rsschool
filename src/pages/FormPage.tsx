@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Wrapper } from '../components';
 import { User } from '../types';
-import data from '../assets/users.json';
 import { UsersList } from '../components';
 
 interface State {
@@ -15,12 +14,7 @@ export default class FormPage extends React.Component {
 
   addNewUser = (user: User) => {
     this.setState((prev: State) => ({ items: [...prev.items, user] }));
-    console.log(user, this.state);
   };
-
-  componentDidMount() {
-    this.setState({ items: data });
-  }
 
   render() {
     return (

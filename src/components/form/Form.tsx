@@ -26,12 +26,10 @@ export default class Form extends React.Component<FormProps> {
   sex2 = React.createRef<HTMLInputElement>();
   sex3 = React.createRef<HTMLInputElement>();
   promo = React.createRef<HTMLInputElement>();
-  file: File;
 
   constructor(props: FormProps) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.file = new File([EmptyProfilePicture], 'empty-profile-picture.png', { type: 'image/png' });
   }
 
   state: FormState = {
@@ -54,6 +52,23 @@ export default class Form extends React.Component<FormProps> {
     return 'other';
   }
 
+  handleImageInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (this.img.current !== null) {
+          const imageFile = this.img.current.files && this.img.current.files[0];
+          if (imageFile !== null) {
+            this.setState({
+              img: URL.createObjectURL(imageFile),
+            });
+          }
+        }
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  };
+
   handleSubmit(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     event.preventDefault();
 
@@ -62,7 +77,6 @@ export default class Form extends React.Component<FormProps> {
       if (input && input.current?.value) {
         this.setState((prev: FormState) => {
           return {
-            ...prev,
             errors: { ...prev.errors, [key]: '' },
           };
         });
@@ -70,14 +84,13 @@ export default class Form extends React.Component<FormProps> {
 
       if (!input.current?.value) {
         this.setState((prev: FormState) => {
-          return { ...prev, errors: { ...prev.errors, [key]: 'Value should not be empty' } };
+          return { errors: { ...prev.errors, [key]: 'Value should not be empty' } };
         });
       }
 
       if (key === 'nickname' && input.current?.value && input.current.value.length < 5) {
         this.setState((prev: FormState) => {
           return {
-            ...prev,
             errors: { ...prev.errors, nickname: 'Value should contain min 5 symbols' },
           };
         });
@@ -93,7 +106,7 @@ export default class Form extends React.Component<FormProps> {
           dateOfBirth: this.date.current?.value || '1994-03-20T17:51:53.221Z',
           promo: this.promo.current?.checked || false,
           sex: this.getRadioValue(this.sex1.current, this.sex2.current, this.sex3.current),
-          image: URL.createObjectURL(this.file),
+          image: this.state.img,
         };
 
         this.props.handleSubmit(newUser);
@@ -122,7 +135,13 @@ export default class Form extends React.Component<FormProps> {
         </InputWrapper>
 
         <InputWrapper name="img" title="Image" error={this.state.errors.img}>
-          <input ref={this.img} type="file" id="img" accept=".jpg, .png, .jpeg" />
+          <input
+            ref={this.img}
+            type="file"
+            id="img"
+            accept=".jpg, .png, .jpeg"
+            onInput={this.handleImageInput}
+          />
         </InputWrapper>
 
         <div className={styles.radio__wrapper}>
