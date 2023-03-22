@@ -16,7 +16,7 @@ export default class FormPage extends React.Component {
 
   addNewUser = (user: User) => {
     this.setState((prev: State) => ({ items: [...prev.items, user], notificationShown: true }));
-    setTimeout(() => this.setState({ notificationShown: false }), 1000);
+    setTimeout(() => this.setState({ notificationShown: false }), 1300);
   };
 
   render() {

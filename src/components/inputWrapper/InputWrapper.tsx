@@ -14,7 +14,7 @@ export default class InputWrapper extends React.Component<React.PropsWithChildre
       <div className={styles.wrapper + ` ${this.props.type ? styles[this.props.type] : ''}`}>
         <label htmlFor={this.props.name}>{this.props.title}</label>
         {this.props.children}
-        <p className={styles.error}>{this.props.error}</p>
+        {this.props.error && <p className={styles.error}>{this.props.error}</p>}
       </div>
     );
   }

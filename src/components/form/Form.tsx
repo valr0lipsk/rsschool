@@ -2,7 +2,6 @@ import React from 'react';
 import { User } from 'types';
 import { InputWrapper } from '../../components';
 import styles from './Form.module.scss';
-import EmptyProfilePicture from '../../assets/empty-profile-picture.png';
 
 interface FormProps {
   handleSubmit: (data: User) => void;
@@ -10,11 +9,6 @@ interface FormProps {
 
 interface FormState {
   img: string;
-  errors: {
-    nickname: string;
-    date: string;
-    img: string;
-  };
 }
 
 export default class Form extends React.Component<FormProps> {
@@ -34,11 +28,6 @@ export default class Form extends React.Component<FormProps> {
 
   state: FormState = {
     img: '',
-    errors: {
-      nickname: '',
-      date: '',
-      img: '',
-    },
   };
 
   getRadioValue(
@@ -51,6 +40,24 @@ export default class Form extends React.Component<FormProps> {
     if (radio2.checked) return radio2.value;
     return 'other';
   }
+
+  validateInput(input: HTMLInputElement | null) {
+    if (!input) return;
+
+    if (input.id === 'nickname' && input.value && input.value.length < 5) {
+      console.log('this', input.validationMessage);
+      input.setCustomValidity('Value should contain min 5 symbols');
+    } else if (!input.value) input.setCustomValidity('Value should not be empty');
+    else input.setCustomValidity('');
+  }
+
+  isFormInvalid = () => {
+    return (
+      !!this.nickname.current?.validationMessage ||
+      !!this.img.current?.validationMessage ||
+      !!this.date.current?.validationMessage
+    );
+  };
 
   handleImageInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -71,57 +78,52 @@ export default class Form extends React.Component<FormProps> {
 
   handleSubmit(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     event.preventDefault();
+    const keys = ['nickname', 'img', 'date'];
 
-    for (const key in this.state.errors) {
-      const input = this[key as keyof Form] as React.RefObject<HTMLInputElement>;
-      if (input && input.current?.value) {
-        this.setState((prev: FormState) => {
-          return {
-            errors: { ...prev.errors, [key]: '' },
-          };
-        });
-      }
+    this.validateInput(this.nickname.current);
+    this.validateInput(this.img.current);
+    this.validateInput(this.date.current);
+    console.log(this.isFormInvalid());
 
-      if (!input.current?.value) {
-        this.setState((prev: FormState) => {
-          return { errors: { ...prev.errors, [key]: 'Value should not be empty' } };
-        });
-      }
+    if (this.isFormInvalid()) {
+      this.forceUpdate();
+    } else {
+      const newUser: User = {
+        id: (Math.random() + Math.random() * Math.random()).toString(),
+        name: this.nickname.current?.value || 'John',
+        country: this.country.current?.value || 'Canada',
+        dateOfBirth: this.date.current?.value || '1994-03-20T17:51:53.221Z',
+        promo: this.promo.current?.checked || false,
+        sex: this.getRadioValue(this.sex1.current, this.sex2.current, this.sex3.current),
+        image: this.state.img,
+      };
 
-      if (key === 'nickname' && input.current?.value && input.current.value.length < 5) {
-        this.setState((prev: FormState) => {
-          return {
-            errors: { ...prev.errors, nickname: 'Value should contain min 5 symbols' },
-          };
-        });
+      this.props.handleSubmit(newUser);
+
+      for (const key of keys) {
+        const input = this[key as keyof Form] as React.RefObject<HTMLInputElement>;
+        if (input.current) input.current.value = '';
       }
+      if (this.sex1.current) this.sex1.current.checked = true;
     }
-
-    setTimeout(() => {
-      if (Object.values(this.state.errors).every((e) => !e)) {
-        const newUser: User = {
-          id: (Math.random() + Math.random() * Math.random()).toString(),
-          name: this.nickname.current?.value || 'John',
-          country: this.country.current?.value || 'Canada',
-          dateOfBirth: this.date.current?.value || '1994-03-20T17:51:53.221Z',
-          promo: this.promo.current?.checked || false,
-          sex: this.getRadioValue(this.sex1.current, this.sex2.current, this.sex3.current),
-          image: this.state.img,
-        };
-
-        this.props.handleSubmit(newUser);
-      }
-    });
   }
 
   render() {
     return (
       <form className={styles.form}>
-        <InputWrapper name="nickname" title="Your name" error={this.state.errors.nickname}>
+        <InputWrapper
+          name="nickname"
+          title="Your name"
+          error={this.nickname.current?.validationMessage}
+        >
           <input ref={this.nickname} type="text" id="nickname" />
         </InputWrapper>
 
-        <InputWrapper name="date" title="Date of birth" error={this.state.errors.date}>
+        <InputWrapper
+          name="date"
+          title="Date of birth"
+          error={this.date.current?.validationMessage}
+        >
           <input ref={this.date} type="datetime-local" id="date" />
         </InputWrapper>
 
@@ -134,7 +136,7 @@ export default class Form extends React.Component<FormProps> {
           </select>
         </InputWrapper>
 
-        <InputWrapper name="img" title="Image" error={this.state.errors.img}>
+        <InputWrapper name="img" title="Image" error={this.img.current?.validationMessage}>
           <input
             ref={this.img}
             type="file"
@@ -169,7 +171,7 @@ export default class Form extends React.Component<FormProps> {
         </div>
 
         <InputWrapper type="checkbox" name="promo" title="I want to receive notifications">
-          <input ref={this.promo} type="checkbox" id="promo" />
+          <input ref={this.promo} type="checkbox" id="promo" defaultChecked />
         </InputWrapper>
 
         <button
