@@ -45,7 +45,6 @@ export default class Form extends React.Component<FormProps> {
     if (!input) return;
 
     if (input.id === 'nickname' && input.value && input.value.length < 5) {
-      console.log('this', input.validationMessage);
       input.setCustomValidity('Value should contain min 5 symbols');
     } else if (!input.value) input.setCustomValidity('Value should not be empty');
     else input.setCustomValidity('');
@@ -83,7 +82,6 @@ export default class Form extends React.Component<FormProps> {
     this.validateInput(this.nickname.current);
     this.validateInput(this.img.current);
     this.validateInput(this.date.current);
-    console.log(this.isFormInvalid());
 
     if (this.isFormInvalid()) {
       this.forceUpdate();
@@ -110,10 +108,10 @@ export default class Form extends React.Component<FormProps> {
 
   render() {
     return (
-      <form className={styles.form}>
+      <form className={styles.form} data-testid="form">
         <InputWrapper
           name="nickname"
-          title="Your name"
+          title="Nickname"
           error={this.nickname.current?.validationMessage}
         >
           <input ref={this.nickname} type="text" id="nickname" />

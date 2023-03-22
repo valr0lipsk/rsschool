@@ -1,4 +1,4 @@
-export interface Item {
+export type Item = {
   id: string;
   title: string;
   author: string;
@@ -6,9 +6,9 @@ export interface Item {
   likes: string;
   createdAt: string;
   img: string;
-}
+};
 
-export interface User {
+export type User = {
   id: string;
   name: string;
   dateOfBirth: string;
@@ -16,4 +16,4 @@ export interface User {
   image?: string;
   sex: string;
   promo: boolean;
-}
+};

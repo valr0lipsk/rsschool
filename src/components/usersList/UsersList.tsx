@@ -1,7 +1,7 @@
 import React from 'react';
 import { User } from '../../types';
 import style from './UsersList.module.scss';
-import UserCard from '../userCard/userCard';
+import UserCard from '../userCard/UserCard';
 
 interface Props {
   users: User[];
@@ -10,7 +10,7 @@ interface Props {
 export default class UsersList extends React.Component<Props> {
   render() {
     return (
-      <div className={style.container} data-testid="cardsList">
+      <div className={style.container} data-testid="usersList">
         {this.props.users.map((user) => (
           <UserCard {...user} key={user.id} />
         ))}
