@@ -17,6 +17,6 @@ describe('Form component test', () => {
     render(<Form handleSubmit={handleSubmit} />);
 
     await user.click(screen.getByRole('button'));
-    expect(screen.getAllByText('Value should not be empty')).toHaveLength(3);
+    expect(screen.getAllByText('Value should not be empty')).toHaveLength(4);
   });
 });

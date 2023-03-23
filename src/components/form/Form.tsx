@@ -20,6 +20,7 @@ export default class Form extends React.Component<FormProps> {
   sex2 = React.createRef<HTMLInputElement>();
   sex3 = React.createRef<HTMLInputElement>();
   promo = React.createRef<HTMLInputElement>();
+  form = React.createRef<HTMLFormElement>();
 
   constructor(props: FormProps) {
     super(props);
@@ -41,7 +42,7 @@ export default class Form extends React.Component<FormProps> {
     return 'other';
   }
 
-  validateInput(input: HTMLInputElement | null) {
+  validateInput(input: HTMLInputElement | HTMLSelectElement | null) {
     if (!input) return;
 
     if (input.id === 'nickname' && input.value && input.value.length < 5) {
@@ -54,7 +55,8 @@ export default class Form extends React.Component<FormProps> {
     return (
       !!this.nickname.current?.validationMessage ||
       !!this.img.current?.validationMessage ||
-      !!this.date.current?.validationMessage
+      !!this.date.current?.validationMessage ||
+      !!this.country.current?.validationMessage
     );
   };
 
@@ -77,17 +79,17 @@ export default class Form extends React.Component<FormProps> {
 
   handleSubmit(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     event.preventDefault();
-    const keys = ['nickname', 'img', 'date'];
 
     this.validateInput(this.nickname.current);
     this.validateInput(this.img.current);
     this.validateInput(this.date.current);
+    this.validateInput(this.country.current);
 
     if (this.isFormInvalid()) {
       this.forceUpdate();
     } else {
       const newUser: User = {
-        id: (Math.random() + Math.random() * Math.random()).toString(),
+        id: crypto.randomUUID(),
         name: this.nickname.current?.value || 'John',
         country: this.country.current?.value || 'Canada',
         dateOfBirth: this.date.current?.value || '1994-03-20T17:51:53.221Z',
@@ -98,17 +100,13 @@ export default class Form extends React.Component<FormProps> {
 
       this.props.handleSubmit(newUser);
 
-      for (const key of keys) {
-        const input = this[key as keyof Form] as React.RefObject<HTMLInputElement>;
-        if (input.current) input.current.value = '';
-      }
-      if (this.sex1.current) this.sex1.current.checked = true;
+      this.form.current?.reset();
     }
   }
 
   render() {
     return (
-      <form className={styles.form} data-testid="form">
+      <form ref={this.form} className={styles.form} data-testid="form">
         <InputWrapper
           name="nickname"
           title="Nickname"
@@ -125,8 +123,13 @@ export default class Form extends React.Component<FormProps> {
           <input ref={this.date} type="datetime-local" id="date" />
         </InputWrapper>
 
-        <InputWrapper name="country" title="Country">
-          <select ref={this.country} id="category">
+        <InputWrapper
+          name="country"
+          title="Country"
+          error={this.country.current?.validationMessage}
+        >
+          <select ref={this.country} id="category" defaultValue={''}>
+            <option disabled hidden value=""></option>
             <option value="Canada">Canada</option>
             <option value="Poland">Poland</option>
             <option value="Australia">Australia</option>
@@ -169,7 +172,7 @@ export default class Form extends React.Component<FormProps> {
         </div>
 
         <InputWrapper type="checkbox" name="promo" title="I want to receive notifications">
-          <input ref={this.promo} type="checkbox" id="promo" defaultChecked />
+          <input ref={this.promo} type="checkbox" id="promo" />
         </InputWrapper>
 
         <button
