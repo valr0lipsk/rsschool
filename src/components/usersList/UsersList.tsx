@@ -1,7 +1,7 @@
 import React from 'react';
 import { User } from '../../types';
 import style from './UsersList.module.scss';
-import UserCard from '../userCard/UserCard';
+import UserCard from '../userCard/UsersCard';
 
 interface Props {
   users: User[];
