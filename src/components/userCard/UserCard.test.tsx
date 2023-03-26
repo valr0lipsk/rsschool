@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import UserCard from './UsersCard';
+import UserCard from './UserCard';
 import { IoFemale, IoMale, IoMaleFemale } from 'react-icons/io5';
 
 describe('UserCard component tests', () => {
