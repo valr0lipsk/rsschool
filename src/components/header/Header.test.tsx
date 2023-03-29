@@ -1,17 +1,26 @@
 import React from 'react';
-import { Header } from './Header';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router';
+import Header from './Header';
 
 describe('Header tests', () => {
   it('should render header', () => {
-    const loc = location;
     render(
       <MemoryRouter>
-        <Header location={loc} />
+        <Header />
       </MemoryRouter>
     );
     expect(screen.getByRole('banner')).toBeInTheDocument();
+  });
+
+  it('should return correct page name', () => {
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText('Welcome on main page')).toBeInTheDocument();
   });
 });
