@@ -105,23 +105,11 @@ const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
           </InputWrapper>
 
           <InputWrapper type="radio" name="female" title="Female">
-            <input
-              {...register('sex', { required: 'Value should not be empty' })}
-              type="radio"
-              name="sex"
-              value="female"
-              id="female"
-            />
+            <input {...register('sex')} type="radio" name="sex" value="female" id="female" />
           </InputWrapper>
 
           <InputWrapper type="radio" name="other" title="Other">
-            <input
-              {...register('sex', { required: 'Value should not be empty' })}
-              type="radio"
-              name="sex"
-              value="other"
-              id="other"
-            />
+            <input {...register('sex')} type="radio" name="sex" value="other" id="other" />
           </InputWrapper>
         </div>
         {errors.sex && <p className={styles.error}>{errors.sex?.message}</p>}
@@ -129,14 +117,14 @@ const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
 
       <InputWrapper
         type="checkbox"
-        name="promo"
+        name="agreement"
         title="I've read user agreement"
         error={errors.isAgree?.message}
       >
         <input
           {...register('isAgree', { required: 'Value should not be empty' })}
           type="checkbox"
-          id="promo"
+          id="agreement"
         />
       </InputWrapper>
 
