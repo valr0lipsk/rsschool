@@ -4,7 +4,7 @@ import { User } from 'types';
 import EmptyProfilePicture from '../../assets/empty-profile-picture.png';
 import styles from './UserCard.module.scss';
 
-const UserCard: React.FC<User> = ({ image, name, dateOfBirth, country, sex, promo }) => {
+const UserCard: React.FC<User> = ({ image, nickname, dateOfBirth, country, sex, isAgree }) => {
   const getSexIcon = (sex: string) => {
     switch (sex) {
       case 'male':
@@ -19,7 +19,7 @@ const UserCard: React.FC<User> = ({ image, name, dateOfBirth, country, sex, prom
   return (
     <div className={styles.card}>
       <img className={styles.img} src={image ? image : EmptyProfilePicture} />
-      <p className={styles.user_name}>{name}</p>
+      <p className={styles.user_name}>{nickname}</p>
       <div className={styles.user_info}>
         <p>
           Birthday: <br />
@@ -29,7 +29,7 @@ const UserCard: React.FC<User> = ({ image, name, dateOfBirth, country, sex, prom
         <p>{country}</p>
       </div>
       <p>
-        User agreement: <span>{promo ? 'yes' : 'no'}</span>
+        User agreement: <span>{isAgree ? 'yes' : 'no'}</span>
       </p>
     </div>
   );

@@ -10,10 +10,10 @@ export type Item = {
 
 export type User = {
   id: string;
-  name: string;
+  nickname: string;
   dateOfBirth: string;
   country: string;
   image?: string;
   sex: string;
-  promo: boolean;
+  isAgree: boolean;
 };

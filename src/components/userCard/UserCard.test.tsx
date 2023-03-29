@@ -6,15 +6,15 @@ import UserCard from './UserCard';
 describe('UserCard component tests', () => {
   const mockedData = {
     id: '2',
-    name: 'catslover45',
+    nickname: 'catslover45',
     dateOfBirth: '1994-03-20T17:51:53.221Z',
     country: 'Poland',
     sex: 'female',
-    promo: false,
+    isAgree: false,
   };
 
   it('should render user card', () => {
     render(<UserCard {...mockedData} />);
-    expect(screen.getByText(mockedData.name)).toBeInTheDocument();
+    expect(screen.getByText(mockedData.nickname)).toBeInTheDocument();
   });
 });

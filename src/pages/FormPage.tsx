@@ -15,7 +15,7 @@ const FormPage = () => {
 
   return (
     <Wrapper>
-      <Form handleSubmit={addNewUser} />
+      <Form handleFormSubmit={addNewUser} />
       <UsersList users={items} />
       {isNotificationShown && <Notification type={'success'} text="User was added" />}
     </Wrapper>
