@@ -29,7 +29,7 @@ const UserCard: React.FC<User> = ({ image, name, dateOfBirth, country, sex, prom
         <p>{country}</p>
       </div>
       <p>
-        Promo notifications: <span>{promo ? 'yes' : 'no'}</span>
+        User agreement: <span>{promo ? 'yes' : 'no'}</span>
       </p>
     </div>
   );
