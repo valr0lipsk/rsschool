@@ -6,15 +6,20 @@ const Search = () => {
     localStorage.getItem('search') || ''
   );
 
+  const searchRef = React.useRef<string>(searchValue);
+
+  React.useEffect(() => {
+    searchRef.current = searchValue;
+  }, [searchValue]);
+
   React.useEffect(() => {
     return () => {
-      if (searchValue) localStorage.setItem('search', searchValue);
+      if (searchRef.current) localStorage.setItem('search', searchRef.current);
     };
-  });
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setSearchValue(value);
+    setSearchValue(event.target.value);
   };
 
   return (
