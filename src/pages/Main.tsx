@@ -1,15 +1,45 @@
 import React from 'react';
-import { Wrapper, Search, CardsList } from '../components';
-import { Item } from '../types';
-import data from '../assets/cards.json';
+import { Wrapper, Search, CardsList, Loader } from '../components';
+import { ImageItem, SearchResponse } from '../types';
+
+const API_URL = 'https://api.unsplash.com/search/photos?query=';
+const headers = {
+  'Accept-Version': 'v1',
+  Authorization: 'Client-ID -koZUPVraluRNEJJQ30ltdBlnZ_E2K6MxfUBcKzdzdg',
+};
 
 const Main: React.FC = () => {
-  const [items] = React.useState<Item[]>(data);
+  const [items, setItems] = React.useState<ImageItem[]>();
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    const currentUrl = API_URL + (localStorage.getItem('search') || 'all');
+    setIsLoading(true);
+
+    fetchItems(currentUrl);
+  }, []);
+
+  const handleSearch = (value: string) => {
+    const currentUrl = value ? API_URL + value : API_URL + 'all';
+    fetchItems(currentUrl);
+  };
+
+  const fetchItems = (url: string) => {
+    setTimeout(() => {
+      fetch(url, { headers: headers })
+        .then((r) => r.json())
+        .then((r: SearchResponse) => {
+          setItems(r.results);
+          setIsLoading(false);
+        });
+    }, 500);
+  };
 
   return (
     <Wrapper>
-      <Search />
-      <CardsList items={items} />
+      <Search handleSearch={handleSearch} />
+      {isLoading && <Loader />}
+      {!isLoading && <CardsList items={items} />}
     </Wrapper>
   );
 };

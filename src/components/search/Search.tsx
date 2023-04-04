@@ -1,7 +1,11 @@
 import React from 'react';
 import style from './Search.module.scss';
 
-const Search = () => {
+interface Props {
+  handleSearch: (value: string) => void;
+}
+
+const Search: React.FC<Props> = ({ handleSearch }) => {
   const [searchValue, setSearchValue] = React.useState<string>(
     localStorage.getItem('search') || ''
   );
@@ -22,8 +26,13 @@ const Search = () => {
     setSearchValue(event.target.value);
   };
 
+  const handleEnter = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    handleSearch(searchValue);
+  };
+
   return (
-    <div className={style.wrapper}>
+    <form className={style.wrapper} onSubmit={(e) => handleEnter(e)}>
       <input
         className={style.search}
         type="search"
@@ -32,7 +41,7 @@ const Search = () => {
         value={searchValue || ''}
         onChange={handleChange}
       />
-    </div>
+    </form>
   );
 };
 

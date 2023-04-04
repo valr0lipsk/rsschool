@@ -1,12 +1,13 @@
 .card {
   width: 30%;
-  // max-height: 450px;
+  max-height: 200px;
   padding: 1em;
   box-shadow: var(--shadow);
   border-radius: var(--radius);
   margin-top: 1.5em;
   color: var(--color-03);
   transition: all 0.2s ease-in;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.01);
@@ -55,4 +56,10 @@
       margin-right: 0.2em;
     }
   }
+}
+
+.square {
+  height: 30px;
+  width: 30px;
+  border-radius: var(--radius);
 }
