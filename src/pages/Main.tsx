@@ -21,18 +21,18 @@ const Main: React.FC = () => {
 
   const handleSearch = (value: string) => {
     const currentUrl = value ? API_URL + value : API_URL + 'all';
+    setIsLoading(true);
+
     fetchItems(currentUrl);
   };
 
   const fetchItems = (url: string) => {
-    setTimeout(() => {
-      fetch(url, { headers: headers })
-        .then((r) => r.json())
-        .then((r: SearchResponse) => {
-          setItems(r.results);
-          setIsLoading(false);
-        });
-    }, 500);
+    fetch(url, { headers: headers })
+      .then((r) => r.json())
+      .then((r: SearchResponse) => {
+        setItems(r.results);
+        setIsLoading(false);
+      });
   };
 
   return (
