@@ -38,3 +38,10 @@
     }
   }
 }
+
+.error {
+  color: #ff0000;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  margin-top: 0.3em;
+}

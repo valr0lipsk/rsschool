@@ -6,14 +6,14 @@ interface Props {
   items: Item[];
 }
 
-export default class CardsList extends React.Component<Props> {
-  render() {
-    return (
-      <div className={style.container} data-testid="cardsList">
-        {this.props.items.map((item) => (
-          <Card {...item} key={item.id} />
-        ))}
-      </div>
-    );
-  }
-}
+const CardsList: React.FC<Props> = ({ items }) => {
+  return (
+    <div className={style.container} data-testid="cardsList">
+      {items.map((item) => (
+        <Card {...item} key={item.id} />
+      ))}
+    </div>
+  );
+};
+
+export default CardsList;

@@ -6,10 +6,8 @@ interface Props {
   text: string;
 }
 
-export default class Notification extends React.Component<Props> {
-  render() {
-    return (
-      <div className={styles.notification + ` ${styles[this.props.type]}`}>{this.props.text}</div>
-    );
-  }
-}
+const Notification: React.FC<Props> = ({ type, text }) => {
+  return <div className={styles.notification + ` ${styles[type]}`}>{text}</div>;
+};
+
+export default Notification;

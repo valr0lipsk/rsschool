@@ -3,29 +3,23 @@ import { Form, Wrapper, Notification } from '../components';
 import { User } from '../types';
 import { UsersList } from '../components';
 
-interface State {
-  items: User[];
-  notificationShown: boolean;
-}
+const FormPage = () => {
+  const [items, setItems] = React.useState<User[]>([]);
+  const [isNotificationShown, setNotificationShown] = React.useState<boolean>(false);
 
-export default class FormPage extends React.Component {
-  state: State = {
-    items: [],
-    notificationShown: false,
+  const addNewUser = (user: User) => {
+    setItems((prev: User[]) => [...prev, user]);
+    setNotificationShown(true);
+    setTimeout(() => setNotificationShown(false), 1300);
   };
 
-  addNewUser = (user: User) => {
-    this.setState((prev: State) => ({ items: [...prev.items, user], notificationShown: true }));
-    setTimeout(() => this.setState({ notificationShown: false }), 1300);
-  };
+  return (
+    <Wrapper>
+      <Form handleFormSubmit={addNewUser} />
+      <UsersList users={items} />
+      {isNotificationShown && <Notification type={'success'} text="User was added" />}
+    </Wrapper>
+  );
+};
 
-  render() {
-    return (
-      <Wrapper>
-        <Form handleSubmit={this.addNewUser} />
-        <UsersList users={this.state.items} />
-        {this.state.notificationShown && <Notification type={'success'} text="User was added" />}
-      </Wrapper>
-    );
-  }
-}
+export default FormPage;

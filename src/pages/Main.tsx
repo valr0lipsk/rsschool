@@ -3,24 +3,15 @@ import { Wrapper, Search, CardsList } from '../components';
 import { Item } from '../types';
 import data from '../assets/cards.json';
 
-interface State {
-  items: Item[];
-}
-export default class Main extends React.Component {
-  state: State = {
-    items: [],
-  };
+const Main: React.FC = () => {
+  const [items] = React.useState<Item[]>(data);
 
-  componentDidMount() {
-    this.setState({ items: data });
-  }
+  return (
+    <Wrapper>
+      <Search />
+      <CardsList items={items} />
+    </Wrapper>
+  );
+};
 
-  render() {
-    return (
-      <Wrapper>
-        <Search />
-        <CardsList items={this.state.items} />
-      </Wrapper>
-    );
-  }
-}
+export default Main;

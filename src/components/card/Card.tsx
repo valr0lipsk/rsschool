@@ -6,32 +6,32 @@ interface Props {
   [key: string]: string;
 }
 
-export default class Card extends React.Component<Props> {
-  render() {
-    return (
-      <div className={style.card}>
-        <img className={style.img} src={this.props.img} />
-        <div>
-          <p className={style.title}>{this.props.title}</p>
-          <div className={style.description}>
-            <p>
-              Created by
-              <br />
-              <span>{this.props.author}</span>
-            </p>
-            <p>{new Date(this.props.createdAt).toDateString()}</p>
-          </div>
-          <div className={style.info}>
-            <span>
-              <IoEye /> {this.props.views}
-            </span>
+const Card: React.FC<Props> = ({ img, title, author, createdAt, views, likes }) => {
+  return (
+    <div className={style.card}>
+      <img className={style.img} src={img} />
+      <div>
+        <p className={style.title}>{title}</p>
+        <div className={style.description}>
+          <p>
+            Created by
+            <br />
+            <span>{author}</span>
+          </p>
+          <p>{new Date(createdAt).toDateString()}</p>
+        </div>
+        <div className={style.info}>
+          <span>
+            <IoEye /> {views}
+          </span>
 
-            <span>
-              <IoHeart /> {this.props.likes}
-            </span>
-          </div>
+          <span>
+            <IoHeart /> {likes}
+          </span>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default Card;

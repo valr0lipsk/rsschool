@@ -7,14 +7,14 @@ interface Props {
   users: User[];
 }
 
-export default class UsersList extends React.Component<Props> {
-  render() {
-    return (
-      <div className={style.container} data-testid="usersList">
-        {this.props.users.map((user) => (
-          <UserCard {...user} key={user.id} />
-        ))}
-      </div>
-    );
-  }
-}
+const UsersList: React.FC<Props> = ({ users }) => {
+  return (
+    <div className={style.container} data-testid="usersList">
+      {users.map((user) => (
+        <UserCard {...user} key={user.id} />
+      ))}
+    </div>
+  );
+};
+
+export default UsersList;
