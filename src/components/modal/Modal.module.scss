@@ -1,0 +1,23 @@
+.modal {
+  min-height: 300px;
+  width: 600px;
+  z-index: 99;
+  position: fixed;
+  background-color: var(--color-00);
+  border-radius: var(--radius);
+  top: 40%;
+  left: 30%;
+  box-shadow: var(--shadow);
+  padding: 8px;
+}
+
+.button {
+  background-color: none;
+  color: var(--color-02);
+  padding: 0.7em;
+  border: none;
+  outline: none;
+  border-radius: var(--radius);
+  font-weight: var(--fw-medium);
+  margin-left: auto;
+}

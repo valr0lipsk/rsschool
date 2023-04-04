@@ -2,9 +2,13 @@ import React from 'react';
 import style from './Card.module.scss';
 import { ImageItem } from 'types';
 
-const Card: React.FC<ImageItem> = ({ alt_description, created_at, urls, color }) => {
+interface Props extends ImageItem {
+  onClick: (id: string) => void;
+}
+
+const Card: React.FC<Props> = ({ id, alt_description, created_at, urls, color, onClick }) => {
   return (
-    <div className={style.card}>
+    <div className={style.card} onClick={() => onClick(id)}>
       <img className={style.img} src={urls.regular} alt={alt_description} />
       <div>
         <div className={style.description}>
