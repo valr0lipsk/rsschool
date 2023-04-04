@@ -2,10 +2,8 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Search from './Search';
-import userEvent from '@testing-library/user-event';
 
 describe('Search tests', () => {
-  const user = userEvent.setup();
   const handleEnter = jest.fn();
   it('should render search input', () => {
     render(<Search handleSearch={handleEnter} />);
