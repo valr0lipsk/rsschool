@@ -23,11 +23,13 @@ const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormInputs>();
 
   const onSubmit = (data: FormInputs) => {
     const user: User = { id: crypto.randomUUID(), image: image, ...data };
     handleFormSubmit(user);
+    reset();
   };
 
   const handleImageInput = (event: React.ChangeEvent<HTMLInputElement>) => {
