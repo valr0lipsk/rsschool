@@ -10,18 +10,6 @@ const Search: React.FC<Props> = ({ handleSearch }) => {
     localStorage.getItem('search') || ''
   );
 
-  const searchRef = React.useRef<string>(searchValue);
-
-  React.useEffect(() => {
-    searchRef.current = searchValue;
-  }, [searchValue]);
-
-  React.useEffect(() => {
-    return () => {
-      if (searchRef.current) localStorage.setItem('search', searchRef.current);
-    };
-  }, []);
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
