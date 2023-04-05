@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrapper, Search, CardsList, Loader, Modal } from '../components';
+import { Wrapper, Search, CardsList, Loader } from '../components';
 import { ImageItem, SearchResponse } from '../types';
 
 const API_URL = 'https://api.unsplash.com/search/photos?per_page=12&query=';
