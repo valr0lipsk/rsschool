@@ -2,7 +2,7 @@ import React from 'react';
 import { Wrapper, Search, CardsList, Loader, Modal } from '../components';
 import { ImageItem, SearchResponse } from '../types';
 
-const API_URL = 'https://api.unsplash.com/search/photos?query=';
+const API_URL = 'https://api.unsplash.com/search/photos?per_page=12&query=';
 const headers = {
   'Accept-Version': 'v1',
   Authorization: 'Client-ID -koZUPVraluRNEJJQ30ltdBlnZ_E2K6MxfUBcKzdzdg',

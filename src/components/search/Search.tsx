@@ -29,6 +29,7 @@ const Search: React.FC<Props> = ({ handleSearch }) => {
   const handleEnter = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     handleSearch(searchValue);
+    localStorage.setItem('search', searchValue);
   };
 
   return (
