@@ -9,6 +9,7 @@ interface Props {
 
 const CardDetails1: React.FC<Props> = ({ item }) => {
   function capitalizeFirst(s: string) {
+    if (!s || !s.length) return s;
     return s[0].toUpperCase() + s.substring(1);
   }
 
