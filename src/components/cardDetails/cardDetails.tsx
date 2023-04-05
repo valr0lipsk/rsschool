@@ -14,7 +14,7 @@ const CardDetails1: React.FC<Props> = ({ item }) => {
 
   if (!item) return null;
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="details">
       <img src={item.urls.regular} alt={item.alt_description} />
       <div className={styles.info}>
         <p className={styles.description}>{capitalizeFirst(item.alt_description)}</p>

@@ -18,8 +18,8 @@ function Modal({ isOpen, onClose, children, title }: Props) {
 
   if (!isOpen) return null;
   return createPortal(
-    <div className={styles.backdrop} onClick={handleBackdropClick}>
-      <div className={styles.modal} onClick={(e) => handleModalClick(e)}>
+    <div className={styles.backdrop} onClick={handleBackdropClick} data-testid="backdrop">
+      <div className={styles.modal} onClick={(e) => handleModalClick(e)} data-testid="modal">
         <div className={styles.header}>
           {title && <p>{title}</p>}
           <button onClick={onClose} className={styles.button}>

@@ -8,7 +8,7 @@ interface Props extends ImageItem {
 
 const Card: React.FC<Props> = ({ id, alt_description, created_at, urls, color, onClick }) => {
   return (
-    <div className={style.card} onClick={() => onClick(id)}>
+    <div className={style.card} onClick={() => onClick(id)} data-testid="card">
       <img className={style.img} src={urls.regular} alt={alt_description} />
       <div>
         <div className={style.description}>
