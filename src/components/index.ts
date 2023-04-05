@@ -9,3 +9,4 @@ export { default as UsersList } from './usersList/UsersList';
 export { default as Notification } from './notification/Notification';
 export { default as Loader } from './loader/Loader';
 export { default as Modal } from './modal/Modal';
+export { default as CardDetails } from './cardDetails/CardDetails';
