@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { User } from 'types';
+import { User } from 'utils/types';
 import { InputWrapper } from '../../components';
 import styles from './Form.module.scss';
 

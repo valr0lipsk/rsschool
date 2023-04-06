@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './CardsList.module.scss';
 import Card from '../card/Card';
-import { ImageItem } from '../../types';
+import { ImageItem } from '../../utils/types';
 import Modal from '../modal/Modal';
 import { CardDetails } from '../../components';
 interface Props {

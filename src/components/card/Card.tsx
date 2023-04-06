@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Card.module.scss';
-import { ImageItem } from 'types';
+import { ImageItem } from 'utils/types';
 
 interface Props extends ImageItem {
   onClick: (id: string) => void;

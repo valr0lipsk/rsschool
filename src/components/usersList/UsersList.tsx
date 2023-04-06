@@ -1,5 +1,5 @@
 import React from 'react';
-import { User } from '../../types';
+import { User } from '../../utils/types';
 import style from './UsersList.module.scss';
 import UserCard from '../userCard/UserCard';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageItem } from 'types';
+import { ImageItem } from 'utils/types';
 import styles from './CardDetails.module.scss';
 import { IoHeart } from 'react-icons/io5';
 

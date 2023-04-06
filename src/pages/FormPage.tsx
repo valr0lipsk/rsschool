@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Wrapper, Notification } from '../components';
-import { User } from '../types';
+import { User } from '../utils/types';
 import { UsersList } from '../components';
 
 const FormPage: React.FC = () => {
