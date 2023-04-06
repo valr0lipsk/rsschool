@@ -27,8 +27,8 @@ const CardsList: React.FC<Props> = ({ items }) => {
       });
   };
 
+  if (!items) return <p className={style.empty}>Oops, something went wrong</p>;
   if (!items?.length) return <p className={style.empty}>Oops, nothing found</p>;
-
   return (
     <>
       <div className={style.container} data-testid="cardsList">

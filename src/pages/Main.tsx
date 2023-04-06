@@ -11,6 +11,7 @@ const headers = {
 const Main: React.FC = () => {
   const [items, setItems] = React.useState<ImageItem[]>();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string | null>();
 
   React.useEffect(() => {
     const currentUrl = API_URL + (localStorage.getItem('search') || 'all');
@@ -31,8 +32,11 @@ const Main: React.FC = () => {
       .then((r) => r.json())
       .then((r: SearchResponse) => {
         setItems(r.results);
-        setIsLoading(false);
-      });
+      })
+      .catch((e) => {
+        setError(e);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
