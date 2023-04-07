@@ -7,7 +7,7 @@ interface Props {
   item: ImageItem | undefined;
 }
 
-const CardDetails1: React.FC<Props> = ({ item }) => {
+const CardDetails: React.FC<Props> = ({ item }) => {
   function capitalizeFirst(s: string) {
     if (!s || !s.length) return s;
     return s[0].toUpperCase() + s.substring(1);
@@ -37,4 +37,4 @@ const CardDetails1: React.FC<Props> = ({ item }) => {
   );
 };
 
-export default CardDetails1;
+export default CardDetails;
