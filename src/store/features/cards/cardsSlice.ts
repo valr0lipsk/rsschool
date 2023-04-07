@@ -29,14 +29,11 @@ export const fetchCards = createAsyncThunk(
     try {
       const currentURL = search ? API_URL + search : API_URL + 'all';
       const response = await fetch(currentURL, { headers: headers });
-
-      // if (!response) throw new Error('Something went wrong');
-
       const data: SearchResponse = await response.json();
+
       return data.results;
     } catch (e) {
       if (e instanceof Error) {
-        console.log(e.message);
         return rejectWithValue(e.message);
       }
     }
@@ -48,12 +45,13 @@ export const fetchCardById = createAsyncThunk(
   async (id: string, { rejectWithValue }) => {
     try {
       const response = await fetch(`https://api.unsplash.com/photos/${id}`, { headers: headers });
-      if (!response) throw new Error('Something went wrong');
-
       const data: ImageItem = await response.json();
+
       return data;
     } catch (e) {
-      rejectWithValue(e);
+      if (e instanceof Error) {
+        return rejectWithValue(e.message);
+      }
     }
   }
 );
@@ -65,21 +63,12 @@ export const cardsSlice = createSlice({
     saveSearchValue(state, action: PayloadAction<string | null>) {
       state.searchValue = action.payload;
     },
-    fetchCardsSUC(state, action: PayloadAction<ImageItem[]>) {
-      state.isLoading = false;
-      state.cards = action.payload;
-      state.error = undefined;
-    },
-    fetchCardsERR(state, action: PayloadAction<string>) {
-      state.isLoading = false;
-      state.cards = [];
-      state.error = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCards.pending, (state) => {
       state.isLoading = true;
       state.error = undefined;
+      state.cards = [];
     });
     builder.addCase(fetchCards.fulfilled, (state, action) => {
       state.cards = action.payload || [];
@@ -98,11 +87,11 @@ export const cardsSlice = createSlice({
       state.selectedCard = action.payload;
     });
     builder.addCase(fetchCardById.rejected, (state, action) => {
-      state.error = action.error.message;
+      state.error = action.payload as string;
     });
   },
 });
 
-export const { saveSearchValue, fetchCardsERR, fetchCardsSUC } = cardsSlice.actions;
+export const { saveSearchValue } = cardsSlice.actions;
 
 export default cardsSlice.reducer;
