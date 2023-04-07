@@ -1,7 +1,7 @@
 import React from 'react';
 import { Wrapper, Search, CardsList, Loader } from '../components';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { fetchCards } from '../store/features/cards/cardsSlice';
+import { fetchCards } from '../store/index';
 
 const Main: React.FC = () => {
   const imageItems = useAppSelector((state) => state.cards.cards);

@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Search.module.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { saveSearchValue } from '../../store/features/cards/cardsSlice';
+import { saveSearchValue } from '../../store';
 
 const Search: React.FC = () => {
   const searchValue = useAppSelector((state) => state.cards.searchValue);

@@ -5,7 +5,7 @@ import { ImageItem } from '../../utils/types';
 import Modal from '../modal/Modal';
 import { CardDetails } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchCardById } from '../../store/features/cards/cardsSlice';
+import { fetchCardById } from '../../store';
 interface Props {
   items: ImageItem[] | undefined;
 }
