@@ -17,7 +17,7 @@ const initialState: CardsState = {
   selectedCard: undefined,
 };
 
-const API_URL = 'https://акнрерке.com/search/photos?per_page=12&query=';
+const API_URL = 'https://api.unsplash.com/search/photos?per_page=12&query=';
 const headers = {
   'Accept-Version': 'v1',
   Authorization: 'Client-ID -koZUPVraluRNEJJQ30ltdBlnZ_E2K6MxfUBcKzdzdg',
@@ -30,12 +30,15 @@ export const fetchCards = createAsyncThunk(
       const currentURL = search ? API_URL + search : API_URL + 'all';
       const response = await fetch(currentURL, { headers: headers });
 
-      if (!response) throw new Error('Something went wrong');
+      // if (!response) throw new Error('Something went wrong');
 
       const data: SearchResponse = await response.json();
       return data.results;
     } catch (e) {
-      rejectWithValue(e);
+      if (e instanceof Error) {
+        console.log(e.message);
+        return rejectWithValue(e.message);
+      }
     }
   }
 );
@@ -85,7 +88,7 @@ export const cardsSlice = createSlice({
     builder.addCase(fetchCards.rejected, (state, action) => {
       state.cards = [];
       state.isLoading = false;
-      state.error = action.error.message;
+      state.error = action.payload as string;
     });
     builder.addCase(fetchCardById.pending, (state) => {
       state.selectedCard = undefined;
