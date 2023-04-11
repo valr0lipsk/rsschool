@@ -1,33 +1,19 @@
 import React from 'react';
-import { IoEye, IoHeart } from 'react-icons/io5';
 import style from './Card.module.scss';
+import { ImageItem } from 'types';
 
-interface Props {
-  [key: string]: string;
+interface Props extends ImageItem {
+  onClick: (id: string) => void;
 }
 
-const Card: React.FC<Props> = ({ img, title, author, createdAt, views, likes }) => {
+const Card: React.FC<Props> = ({ id, alt_description, created_at, urls, color, onClick }) => {
   return (
-    <div className={style.card}>
-      <img className={style.img} src={img} />
+    <div className={style.card} onClick={() => onClick(id)} data-testid="card">
+      <img className={style.img} src={urls.regular} alt={alt_description} />
       <div>
-        <p className={style.title}>{title}</p>
         <div className={style.description}>
-          <p>
-            Created by
-            <br />
-            <span>{author}</span>
-          </p>
-          <p>{new Date(createdAt).toDateString()}</p>
-        </div>
-        <div className={style.info}>
-          <span>
-            <IoEye /> {views}
-          </span>
-
-          <span>
-            <IoHeart /> {likes}
-          </span>
+          <p>{new Date(created_at).toDateString()}</p>
+          <div className={style.square} style={{ backgroundColor: `${color}` }}></div>
         </div>
       </div>
     </div>

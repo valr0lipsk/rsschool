@@ -4,3 +4,10 @@
   flex-wrap: wrap;
   margin-bottom: 3em;
 }
+
+.empty {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  text-align: center;
+  margin-top: 1em;
+}

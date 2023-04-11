@@ -55,7 +55,7 @@ const Header: React.FC = () => {
 
 export default Header;
 
-export function mapPathnameToTitle(pathname: string) {
+function mapPathnameToTitle(pathname: string) {
   if (pathname === '/') return 'main';
 
   return pathname.substring(1);

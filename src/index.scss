@@ -19,6 +19,7 @@
 
   --fs-sm: 0.8em;
   --fs-md: 1em;
+  --fs-l: 1.2em;
   --fs-xl: 1.35em;
 
   --fw-light: 400;
@@ -29,4 +30,5 @@
 body {
   background-color: var(--color-00);
   font-family: var(--font-family);
+  min-height: 100vh;
 }

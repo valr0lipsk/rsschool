@@ -3,7 +3,7 @@ import { Form, Wrapper, Notification } from '../components';
 import { User } from '../types';
 import { UsersList } from '../components';
 
-const FormPage = () => {
+const FormPage: React.FC = () => {
   const [items, setItems] = React.useState<User[]>([]);
   const [isNotificationShown, setNotificationShown] = React.useState<boolean>(false);
 

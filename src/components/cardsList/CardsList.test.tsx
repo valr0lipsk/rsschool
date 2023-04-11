@@ -2,13 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import CardsList from './CardsList';
 import '@testing-library/jest-dom';
-import data from '../../assets/cards.json';
+import mockedData from '../../assets/images.json';
 
 describe('CardsList component tests', () => {
   it('should render CardsList', () => {
-    const mockItems = data;
-
-    render(<CardsList items={mockItems} />);
+    render(<CardsList items={mockedData} />);
     expect(screen.getByTestId('cardsList')).toBeInTheDocument();
   });
 });
