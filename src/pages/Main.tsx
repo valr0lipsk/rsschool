@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { fetchCards } from '../store/index';
 
 const Main: React.FC = () => {
-  const imageItems = useAppSelector((state) => state.cards.items);
   const isLoading = useAppSelector((state) => state.cards.isLoading);
   const searchValue = useAppSelector((state) => state.cards.searchValue);
   const error = useAppSelector((state) => state.cards.error);
@@ -18,7 +17,7 @@ const Main: React.FC = () => {
     <Wrapper>
       <Search />
       {isLoading && <Loader />}
-      {!error && !isLoading && <CardsList items={imageItems} />}
+      {!error && !isLoading && <CardsList />}
       {error && <p className="error">Error: {error}</p>}
     </Wrapper>
   );

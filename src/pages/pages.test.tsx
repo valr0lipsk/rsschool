@@ -1,9 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Main } from '../pages';
 import mockedData from '../assets/images.json';
 import { act } from 'react-dom/test-utils';
+import { renderWithProviders } from '../utils/test/testUtils';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
@@ -14,7 +14,7 @@ global.fetch = jest.fn(() =>
 describe('Main page tests', () => {
   it('should render Main page with cards', async () => {
     await act(async () => {
-      render(<Main />);
+      renderWithProviders(<Main />);
     });
 
     expect(fetch).toBeCalled();

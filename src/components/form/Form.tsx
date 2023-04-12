@@ -28,6 +28,7 @@ const Form: React.FC = () => {
 
   const onSubmit = (data: FormInputs) => {
     const user: User = { id: crypto.randomUUID(), image: image, ...data };
+    console.log(data);
     dispatch(addNewUser(user));
     reset();
     setNotificationShown(true);
@@ -75,7 +76,7 @@ const Form: React.FC = () => {
         <InputWrapper name="country" title="Country" error={errors.country?.message}>
           <select
             {...register('country', { required: 'Value should not be empty' })}
-            id="category"
+            id="country"
             defaultValue={''}
           >
             <option disabled hidden value=""></option>

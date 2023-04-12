@@ -1,12 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import users from '../../assets/users.json';
 import UsersList from './UsersList';
+import { renderWithProviders } from '../../utils/test/testUtils';
 
 describe('UsersList component test', () => {
   it('should render users list', () => {
-    render(<UsersList users={users} />);
+    renderWithProviders(<UsersList />);
     expect(screen.getByTestId('usersList')).toBeInTheDocument();
   });
 });

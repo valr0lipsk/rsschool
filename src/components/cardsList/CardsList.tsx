@@ -1,18 +1,16 @@
 import React from 'react';
 import style from './CardsList.module.scss';
 import Card from '../card/Card';
-import { ImageItem } from '../../utils/types';
 import Modal from '../modal/Modal';
 import { CardDetails } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchCardById } from '../../store';
-interface Props {
-  items: ImageItem[] | undefined;
-}
-const CardsList: React.FC<Props> = ({ items }) => {
+
+const CardsList: React.FC = () => {
   const [isModalOpen, setModalOpen] = React.useState<boolean>(false);
   const dispatch = useAppDispatch();
   const selectedItem = useAppSelector((state) => state.cards.selectedCard);
+  const items = useAppSelector((state) => state.cards.items);
 
   const handleModalClose = () => setModalOpen(false);
   const handleCardClick = (id: string) => {
