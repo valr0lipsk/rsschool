@@ -1,46 +1,24 @@
 import React from 'react';
 import { Wrapper, Search, CardsList, Loader } from '../components';
-import { ImageItem, SearchResponse } from '../types';
-
-const API_URL = 'https://api.unsplash.com/search/photos?per_page=12&query=';
-const headers = {
-  'Accept-Version': 'v1',
-  Authorization: 'Client-ID -koZUPVraluRNEJJQ30ltdBlnZ_E2K6MxfUBcKzdzdg',
-};
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { fetchCards } from '../store/index';
 
 const Main: React.FC = () => {
-  const [items, setItems] = React.useState<ImageItem[]>();
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const isLoading = useAppSelector((state) => state.cards.isLoading);
+  const searchValue = useAppSelector((state) => state.cards.searchValue);
+  const error = useAppSelector((state) => state.cards.error);
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    const currentUrl = API_URL + (localStorage.getItem('search') || 'all');
-    setIsLoading(true);
-
-    fetchItems(currentUrl);
-  }, []);
-
-  const handleSearch = (value: string) => {
-    const currentUrl = value ? API_URL + value : API_URL + 'all';
-    setIsLoading(true);
-
-    fetchItems(currentUrl);
-  };
-
-  const fetchItems = (url: string) => {
-    fetch(url, { headers: headers })
-      .then((r) => r.json())
-      .then((r: SearchResponse) => {
-        setItems(r.results);
-      })
-      .catch(() => {})
-      .finally(() => setIsLoading(false));
-  };
+    dispatch(fetchCards(searchValue));
+  }, [dispatch, searchValue]);
 
   return (
     <Wrapper>
-      <Search handleSearch={handleSearch} />
+      <Search />
       {isLoading && <Loader />}
-      {!isLoading && <CardsList items={items} />}
+      {!error && !isLoading && <CardsList />}
+      {error && <p className="error">Error: {error}</p>}
     </Wrapper>
   );
 };

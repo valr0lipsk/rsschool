@@ -1,23 +1,16 @@
 import React from 'react';
 import style from './Search.module.scss';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { saveSearchValue } from '../../store';
 
-interface Props {
-  handleSearch: (value: string) => void;
-}
-
-const Search: React.FC<Props> = ({ handleSearch }) => {
-  const [searchValue, setSearchValue] = React.useState<string>(
-    localStorage.getItem('search') || ''
-  );
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
-  };
+const Search: React.FC = () => {
+  const searchValue = useAppSelector((state) => state.cards.searchValue);
+  const dispatch = useAppDispatch();
+  const [inputValue, setInputValue] = React.useState<string>(searchValue ? searchValue : '');
 
   const handleEnter = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleSearch(searchValue);
-    localStorage.setItem('search', searchValue);
+    dispatch(saveSearchValue(inputValue));
   };
 
   return (
@@ -27,8 +20,8 @@ const Search: React.FC<Props> = ({ handleSearch }) => {
         type="search"
         id="search"
         placeholder="Search something"
-        value={searchValue || ''}
-        onChange={handleChange}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
       />
     </form>
   );

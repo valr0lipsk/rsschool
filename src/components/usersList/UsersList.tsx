@@ -1,13 +1,10 @@
 import React from 'react';
-import { User } from '../../types';
 import style from './UsersList.module.scss';
 import UserCard from '../userCard/UserCard';
+import { useAppSelector } from '../../hooks/redux';
 
-interface Props {
-  users: User[];
-}
-
-const UsersList: React.FC<Props> = ({ users }) => {
+const UsersList: React.FC = () => {
+  const users = useAppSelector((state) => state.users.items);
   return (
     <div className={style.container} data-testid="usersList">
       {users.map((user) => (

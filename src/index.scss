@@ -32,3 +32,9 @@ body {
   font-family: var(--font-family);
   min-height: 100vh;
 }
+
+.error {
+  text-align: center;
+  font-size: var(--fs-xl);
+  color: #ff0000;
+}

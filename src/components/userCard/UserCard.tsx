@@ -1,6 +1,6 @@
 import React from 'react';
 import { IoFemale, IoMale, IoMaleFemale } from 'react-icons/io5';
-import { User } from 'types';
+import { User } from 'utils/types';
 import EmptyProfilePicture from '../../assets/empty-profile-picture.png';
 import styles from './UserCard.module.scss';
 
