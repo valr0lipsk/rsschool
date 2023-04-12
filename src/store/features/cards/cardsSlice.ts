@@ -3,7 +3,7 @@ import { ImageItem, SearchResponse } from 'utils/types';
 
 export interface CardsState {
   searchValue: string | null;
-  cards: ImageItem[];
+  items: ImageItem[];
   isLoading: boolean;
   error: string | undefined;
   selectedCard: ImageItem | undefined;
@@ -11,7 +11,7 @@ export interface CardsState {
 
 const initialState: CardsState = {
   searchValue: '',
-  cards: [],
+  items: [],
   isLoading: false,
   error: undefined,
   selectedCard: undefined,
@@ -68,14 +68,14 @@ export const cardsSlice = createSlice({
     builder.addCase(fetchCards.pending, (state) => {
       state.isLoading = true;
       state.error = undefined;
-      state.cards = [];
+      state.items = [];
     });
     builder.addCase(fetchCards.fulfilled, (state, action) => {
-      state.cards = action.payload || [];
+      state.items = action.payload || [];
       state.isLoading = false;
     });
     builder.addCase(fetchCards.rejected, (state, action) => {
-      state.cards = [];
+      state.items = [];
       state.isLoading = false;
       state.error = action.payload as string;
     });

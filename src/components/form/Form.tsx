@@ -3,10 +3,8 @@ import { useForm } from 'react-hook-form';
 import { User } from 'utils/types';
 import { InputWrapper } from '../../components';
 import styles from './Form.module.scss';
-
-interface FormProps {
-  handleFormSubmit: (data: User) => void;
-}
+import { useAppDispatch } from '../../hooks/redux';
+import { addNewUser } from '../../store/features/users/usersSlice';
 
 type FormInputs = {
   nickname: string;
@@ -17,7 +15,7 @@ type FormInputs = {
   isAgree: boolean;
 };
 
-const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
+const Form: React.FC = () => {
   const [image, setImage] = React.useState<string>('');
   const {
     register,
@@ -25,10 +23,11 @@ const Form: React.FC<FormProps> = ({ handleFormSubmit }) => {
     formState: { errors },
     reset,
   } = useForm<FormInputs>();
+  const dispatch = useAppDispatch();
 
   const onSubmit = (data: FormInputs) => {
     const user: User = { id: crypto.randomUUID(), image: image, ...data };
-    handleFormSubmit(user);
+    dispatch(addNewUser(user));
     reset();
   };
 
