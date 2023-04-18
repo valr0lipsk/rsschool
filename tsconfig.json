@@ -22,7 +22,8 @@
   "include": [
     "./src/**/*",
     "styled.d.ts",
-    "jest.config.ts"
+    "jest.setup.ts",
+    "server.js"
   ],
   "references": [
     {
