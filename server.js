@@ -15,11 +15,10 @@ app.use((req, res) => {
     onShellReady() {
       stream.pipe(res);
     },
-    onShellError() {
-      // do error handling
+    onShellError(err) {
+      console.error(err);
     },
     onAllReady() {
-      // last thing to write
       res.write(html);
       res.end();
     },
