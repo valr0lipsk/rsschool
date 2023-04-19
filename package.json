@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build:client": "vite build --outDir ./dist/client",
-    "build:server": "vite build --outDir ./dist/server --ssr ./src/entry-server.tsx",
+    "build:server": "ts-node vite build --ssr src/entry-server.tsx --outDir dist/server",
     "build": "npm run build:client && npm run build:server",
-    "start": "node server.js",
+    "start": "nodemon server.ts",
     "preview": "vite preview",
     "lint": "eslint src",
     "lint:fix": "npm run lint -- --fix",

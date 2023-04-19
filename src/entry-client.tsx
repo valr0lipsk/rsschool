@@ -8,11 +8,15 @@ import './styles/style.css';
 
 const store = setupStore();
 
-hydrateRoot(
-  document,
-  <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </BrowserRouter>
-);
+hydrate();
+
+async function hydrate() {
+  hydrateRoot(
+    document.getElementById('root') as HTMLElement,
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  );
+}
