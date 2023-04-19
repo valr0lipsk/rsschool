@@ -19,9 +19,7 @@ export async function render(
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function createFetchRequest(req: any) {
-  console.log(req);
   const origin = `${req.protocol}://${req.get('host')}`;
-  // Note: This had to take originalUrl into account for presumably vite's proxying
   const url = new URL(req.originalUrl || req.url, origin);
 
   const controller = new AbortController();
