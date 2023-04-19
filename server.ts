@@ -52,11 +52,9 @@ async function createServer() {
         template = await fsp.readFile(resolve('index.html'), 'utf8');
         template = await vite.transformIndexHtml(url, template);
         render = await vite.ssrLoadModule('src/entry-server.tsx').then((m) => m.render);
-        console.log(render);
       } else {
         template = await fsp.readFile(resolve('dist/client/index.html'), 'utf8');
         render = (await import('./dist/server/entry-server.tsx'!)).render;
-        console.log(render);
       }
 
       const parts = template.split('not rendered');
