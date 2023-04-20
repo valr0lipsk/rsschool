@@ -14,7 +14,8 @@
     "prettier": "npx prettier src --check",
     "prettier:fix": "npm run prettier -- --write",
     "format": "npm run prettier:fix && npm run lint:fix",
-    "test": "jest --watchAll --coverage --collectCoverageFrom=src/**/*.{ts,tsx}"
+    "test": "jest --watchAll --coverage --collectCoverageFrom=src/**/*.{ts,tsx}",
+    "e2e": "npx cypress open"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
