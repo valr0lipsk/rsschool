@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 coverage
+.nyc_output
+.vscode
 
 # Editor directories and files
 .vscode/*
@@ -23,3 +25,4 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+vite.config.ts.timestamp-*
