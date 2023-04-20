@@ -15,7 +15,10 @@
     "prettier:fix": "npm run prettier -- --write",
     "format": "npm run prettier:fix && npm run lint:fix",
     "test": "jest --watchAll --coverage --collectCoverageFrom=src/**/*.{ts,tsx}",
-    "e2e": "npx cypress open"
+    "test:clean": "npx rimraf coverage && npx rimraf .nyc_output",
+    "test:e2e": "npm run test:clean && npm run e2e",
+    "test:open": "npx cypress open && npx nyc report --reporter=text-summary",
+    "e2e": "npx cypress run --e2e && npx nyc report --reporter=text-summary"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
