@@ -1,4 +1,5 @@
 import React from 'react';
+import type * as express from 'express';
 import { renderToPipeableStream, RenderToPipeableStreamOptions } from 'react-dom/server';
 import { Location } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
@@ -17,8 +18,7 @@ export async function render(
   return stream;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function createFetchRequest(req: any) {
+export function createFetchRequest(req: express.Request) {
   const origin = `${req.protocol}://${req.get('host')}`;
   const url = new URL(req.originalUrl || req.url, origin);
 
@@ -39,8 +39,7 @@ export function createFetchRequest(req: any) {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const init: { [key: string]: any } = {
+  const init: RequestInit = {
     method: req.method,
     headers,
     signal: controller.signal,
