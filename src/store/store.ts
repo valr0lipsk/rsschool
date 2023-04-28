@@ -1,10 +1,12 @@
 import * as toolkitRaw from '@reduxjs/toolkit';
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { configureStore } = ((toolkitRaw as any).default ?? toolkitRaw) as typeof toolkitRaw;
+const { configureStore } = ((toolkitRaw as TypeToolkitRaw).default ??
+  toolkitRaw) as typeof toolkitRaw;
 import { PreloadedState } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import cardsSlice from './features/cards/cardsSlice';
 import usersSlice from './features/users/usersSlice';
+
+type TypeToolkitRaw = typeof toolkitRaw & { default?: unknown };
 
 export const rootReducer = combineReducers({
   cards: cardsSlice,
