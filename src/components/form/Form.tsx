@@ -28,7 +28,6 @@ const Form: React.FC = () => {
 
   const onSubmit = (data: FormInputs) => {
     const user: User = { id: crypto.randomUUID(), image: image, ...data };
-    console.log(data);
     dispatch(addNewUser(user));
     reset();
     setNotificationShown(true);

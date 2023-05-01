@@ -33,25 +33,4 @@ describe('Form component test', () => {
       expect(imageInput.files[0]).toStrictEqual(file);
     }
   });
-
-  // it('should add new user', async () => {
-  //   const file = new File(['(⌐□_□)'], 'test.png', { type: 'image/png' });
-  //   const imageInput = screen.getByLabelText('Image') as HTMLInputElement;
-  //   await waitFor(() =>
-  //     fireEvent.change(imageInput, {
-  //       target: { files: [file] },
-  //     })
-  //   );
-
-  //   user.click(screen.getByLabelText('Male'));
-  //   user.click(screen.getByLabelText("I've read user agreement"));
-  //   user.selectOptions(screen.getByLabelText('Country'), 'Canada');
-  //   user.type(screen.getByLabelText('Nickname'), 'abcde');
-  //   user.type(screen.getByLabelText('Date of birth'), '2023-03-28T14:52');
-
-  //   await user.click(screen.getByRole('button'));
-
-  //   const notification = await screen.findByText('User was added');
-  //   expect(notification).toBeInTheDocument();
-  // });
 });

@@ -1,5 +1,12 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import * as toolkitRaw from '@reduxjs/toolkit';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { createSlice, createAsyncThunk } = ((toolkitRaw as TypeToolkitRaw).default ??
+  toolkitRaw) as typeof toolkitRaw;
+
+import { PayloadAction } from '@reduxjs/toolkit';
 import { ImageItem, SearchResponse } from 'utils/types';
+
+type TypeToolkitRaw = typeof toolkitRaw & { default?: unknown };
 
 export interface CardsState {
   searchValue: string | null;

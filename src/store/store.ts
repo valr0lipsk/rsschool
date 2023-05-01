@@ -1,6 +1,12 @@
-import { PreloadedState, combineReducers, configureStore } from '@reduxjs/toolkit';
+import * as toolkitRaw from '@reduxjs/toolkit';
+const { configureStore } = ((toolkitRaw as TypeToolkitRaw).default ??
+  toolkitRaw) as typeof toolkitRaw;
+import { PreloadedState } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 import cardsSlice from './features/cards/cardsSlice';
 import usersSlice from './features/users/usersSlice';
+
+type TypeToolkitRaw = typeof toolkitRaw & { default?: unknown };
 
 export const rootReducer = combineReducers({
   cards: cardsSlice,
